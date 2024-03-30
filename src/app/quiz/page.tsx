@@ -1,44 +1,42 @@
 'use client';
-
-import Header from "../header"
+import Header from "../header";
 import React from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
 import { scale, center_left, center_right, unitType, geoUrl } from '../Config';
 import { useQuiz, QuizProvider } from './QuizContext';
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
-function TextBox() {
-  const { quiz, quizIndex, message, restartQuiz } = useQuiz();
-  let nameToGuess = null;
-  if (quiz && quizIndex < quiz.length) {
-    nameToGuess = quiz[quizIndex].unitName;
-    //nameToGuess = 'East Riding of Yorkshire'
-  }
-  return (
-      <div className="flex md:flex-col justify-between md:items-start text-xs md:text-base w-full">
-
-        <div className="flex items-center px-2 py-2 bg-white border border-gray-300 rounded-xl md:w-52">
-          {message}
-        </div>
-
-        {quizIndex < quiz.length && (
-          <div className="flex-1 flex items-center px-2 py-2 bg-white border border-gray-300 rounded-xl md:w-52">
-            <span className="w-full md:text-left text-center">{nameToGuess}</span>
-          </div>
-        )}
-
-        <Button className="flex-shrink-0" onClick={restartQuiz}>
-          Restart
-        </Button>
-
-      </div>
-  );
+interface UnitProps {
+  geography: any;
 }
 
-function Unit({ geography }) {
+const TextBox: React.FC = () => {
+  const { quiz, quizIndex, message, restartQuiz } = useQuiz();
+  let nameToGuess: string | null = null;
+  if (quiz && quizIndex < quiz.length) {
+    nameToGuess = quiz[quizIndex].unitName;
+  }
+  return (
+    <div className="flex md:flex-col justify-between md:items-start text-xs md:text-base w-full">
+      <div className="flex items-center px-2 py-2 bg-white border border-gray-300 rounded-xl md:w-52">
+        {message}
+      </div>
+      {quizIndex < quiz.length && (
+        <div className="flex-1 flex items-center px-2 py-2 bg-white border border-gray-300 rounded-xl md:w-52">
+          <span className="w-full md:text-left text-center">{nameToGuess}</span>
+        </div>
+      )}
+      <Button className="flex-shrink-0" onClick={restartQuiz}>
+        Restart
+      </Button>
+    </div>
+  );
+};
+
+const Unit: React.FC<UnitProps> = ({ geography }) => {
   const { done, handleUnitClick, quiz, quizIndex } = useQuiz();
-  const unitName = geography?.properties?.[unitType];
+  const unitName: any = geography?.properties?.[unitType];
   const unitDone = done.includes(unitName);
   const isCurrentQuizUnit = quizIndex < quiz.length && unitName === quiz[quizIndex].unitName;
 
@@ -62,38 +60,37 @@ function Unit({ geography }) {
       onClick={() => handleUnitClick(geography)}
     />
   );
-}
+};
 
-function Map() {
+const Map: React.FC = () => {
   return (
-
-    
-      <Card style={{ maxHeight: '88vh' }} className="max-h-screen overflow-hidden">
-        <CardContent>
-          <ComposableMap
-            projectionConfig={{
-              scale: scale,
-              center: [center_left, center_right]
-            }}>
-              <ZoomableGroup zoom={1}>
+    <Card style={{ maxHeight: '88vh' }} className="max-h-screen overflow-hidden">
+      <CardContent>
+        <ComposableMap
+          projectionConfig={{
+            scale: scale,
+            center: [center_left, center_right]
+          }}
+        >
+          <ZoomableGroup zoom={1}>
             <Geographies geography={geoUrl}>
               {({ geographies }) => 
                 geographies.map(geo => (
                   <Unit 
-                    key={geo?.rsmKey} 
+                    key={geo.rsmKey} 
                     geography={geo}
                   />
-                ))}
+                ))
+              }
             </Geographies>
-            </ZoomableGroup>
-          </ComposableMap>
-        </CardContent>
-      </Card>
+          </ZoomableGroup>
+        </ComposableMap>
+      </CardContent>
+    </Card>
   );
-}
+};
 
-
-function Quiz() {
+const Quiz: React.FC = () => {
   return (
     <QuizProvider>
       <Header />
@@ -102,11 +99,11 @@ function Quiz() {
           <TextBox />
         </div>
         <div className="flex-1 md:ml-2 mx-4 md:mx-6 max-h-screen overflow-auto">
-          <Map  />
+          <Map />
         </div>
       </div>
     </QuizProvider>
   );
-}
+};
 
 export default Quiz;
