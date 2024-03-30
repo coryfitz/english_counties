@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import unitNamesJson from '../data/englandCountyNames.json';
 import _ from 'lodash';
-import { unitType } from '../Config';
+import { unitType } from '../Config.tsx';
 
 interface QuizUnit {
   unitName: string;
