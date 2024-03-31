@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { unitType } from './Config.tsx';
+import { unitType } from '@/app/Config';
 
 interface StudyContextType {
     selectedUnit: string | null;

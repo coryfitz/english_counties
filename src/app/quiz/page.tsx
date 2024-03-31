@@ -2,7 +2,7 @@
 import Header from "../header";
 import React from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
-import { scale, center_left, center_right, unitType, geoUrl } from '../Config.tsx';
+import { scale, center_left, center_right, unitType, geoUrl } from '@/app/Config';
 import { useQuiz, QuizProvider } from './QuizContext';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
