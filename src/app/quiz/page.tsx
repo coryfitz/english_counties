@@ -64,13 +64,14 @@ const Unit: React.FC<UnitProps> = ({ geography }) => {
 
 const Map: React.FC = () => {
   return (
-    <Card style={{ maxHeight: '88vh' }} className="max-h-screen overflow-hidden">
-      <CardContent>
+    <Card className="overflow-hidden">
+
         <ComposableMap
           projectionConfig={{
             scale: scale,
             center: [center_left, center_right]
           }}
+          height={460}
         >
           <ZoomableGroup zoom={1}>
             <Geographies geography={geoUrl}>
@@ -85,7 +86,6 @@ const Map: React.FC = () => {
             </Geographies>
           </ZoomableGroup>
         </ComposableMap>
-      </CardContent>
     </Card>
   );
 };
@@ -98,7 +98,7 @@ const Quiz: React.FC = () => {
         <div className="md:w-1/4 md:mr-2 mb-2 md:mb-0 mx-4 md:mx-6">
           <TextBox />
         </div>
-        <div className="flex-1 md:ml-2 mx-4 md:mx-6 max-h-screen overflow-auto">
+        <div className="flex-1 mx-4 md:ml-2 md:mx-6 ">
           <Map />
         </div>
       </div>
