@@ -5,7 +5,7 @@ import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simp
 import { center_left, center_right, unitType, geoUrl } from '@/app/Config';
 import { useQuiz, QuizProvider } from './QuizContext';
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 
 interface UnitProps {
   geography: any;
