@@ -86,8 +86,8 @@ const useMobileView = () => {
 
 const Map: React.FC = () => {
   const isMobileView = useMobileView();
-  const mapHeight = isMobileView ? 450 : 350; 
-  const mapScale = isMobileView ? 5000 : 3800; 
+  const mapHeight = isMobileView ? 550 : 350;
+  const mapScale = isMobileView ? 5500 : 3800;
   return (
     <Card className="overflow-hidden">
 
