@@ -1,6 +1,6 @@
 'use client';
 import Header from "../header";
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
 import { scale, center_left, center_right, unitType, geoUrl } from '@/app/Config';
 import { useQuiz, QuizProvider } from './QuizContext';
@@ -62,16 +62,38 @@ const Unit: React.FC<UnitProps> = ({ geography }) => {
   );
 };
 
+const useMobileView = () => {
+  // Initialize state with current width
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup the event listener on component unmount
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return isMobileView;
+};
+
 const Map: React.FC = () => {
+  const isMobileView = useMobileView();
+  const mapHeight = isMobileView ? 450 : 350; 
+  const mapScale = isMobileView ? 5000 : 3800; 
   return (
     <Card className="overflow-hidden">
 
         <ComposableMap
           projectionConfig={{
-            scale: scale,
+            scale: mapScale,
             center: [center_left, center_right]
           }}
-          height={460}
+          height={mapHeight}
+          width={600}
         >
           <ZoomableGroup zoom={1}>
             <Geographies geography={geoUrl}>
