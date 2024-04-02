@@ -18,7 +18,7 @@ const TextBox: React.FC = () => {
     nameToGuess = quiz[quizIndex].unitName;
   }
   return (
-    <div className="flex md:flex-col justify-between md:items-start text-sm md:text-base w-full">
+    <div className="flex md:flex-col justify-between md:items-start text-xs md:text-base w-full">
       <div className="flex items-center px-2 py-2 bg-white border border-gray-300 rounded-xl md:w-52">
         {message}
       </div>
