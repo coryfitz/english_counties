@@ -43,7 +43,7 @@ const Unit: React.FC<UnitProps> = ({ geography }) => {
   return (
     <Geography
       geography={geography}
-      stroke = "blue"
+      stroke = "light-grey"
       style={{
         default: {
           fill: unitDone ? 'green' : 'grey',
