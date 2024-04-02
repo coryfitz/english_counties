@@ -2,7 +2,7 @@
 import Header from "../header";
 import React, { useState, useEffect } from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
-import { scale, center_left, center_right, unitType, geoUrl } from '@/app/Config';
+import { center_left, center_right, unitType, geoUrl } from '@/app/Config';
 import { useQuiz, QuizProvider } from './QuizContext';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -63,22 +63,26 @@ const Unit: React.FC<UnitProps> = ({ geography }) => {
 };
 
 const useMobileView = () => {
-  // Initialize state with current width
-  const [isMobileView, setIsMobileView] = useState(window.innerWidth < 768);
+  // Initialize state without assuming window width
+  const [isMobileView, setIsMobileView] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobileView(window.innerWidth < 768);
-    };
+    // Define a function to update our state based on the current window width
+    const checkIfMobile = () => setIsMobileView(window.innerWidth < 768);
 
-    window.addEventListener('resize', handleResize);
+    // Call it on mount to set the initial value based on the client's window
+    checkIfMobile();
+
+    // Set up event listener for future resize events
+    window.addEventListener('resize', checkIfMobile);
 
     // Cleanup the event listener on component unmount
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
 
   return isMobileView;
 };
+
 
 const Map: React.FC = () => {
   const isMobileView = useMobileView();
