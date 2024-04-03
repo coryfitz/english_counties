@@ -43,7 +43,8 @@ const Unit: React.FC<UnitProps> = ({ geography }) => {
   return (
     <Geography
       geography={geography}
-      stroke = "#c6c6c6"
+      stroke = "#dfdfdf"
+      strokeWidth={0.2}
       style={{
         default: {
           fill: unitDone ? 'green' : 'grey',
@@ -87,6 +88,7 @@ const useMobileView = () => {
 
 const Map: React.FC = () => {
   const isMobileView = useMobileView();
+  const mapWidth = 600;
   const mapHeight = isMobileView ? 650 : 350;
   const mapScale = isMobileView ? 6000 : 3800;
   return (
@@ -98,9 +100,14 @@ const Map: React.FC = () => {
             center: [center_left, center_right]
           }}
           height={mapHeight}
-          width={600}
+          width={mapWidth}
         >
-          <ZoomableGroup zoom={1}>
+          <ZoomableGroup
+          translateExtent={[
+            [-mapWidth*2/4, -mapHeight*2/4],
+            [(mapWidth*2)*3/4, (mapHeight*2)*3/4]
+          ]}
+          zoom={1}>
             <Geographies geography={geoUrl}>
               {({ geographies }) => 
                 geographies.map(geo => (
