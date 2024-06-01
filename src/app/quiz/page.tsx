@@ -6,7 +6,6 @@ import { center_left, center_right, unitType, geoUrl } from '@/app/Config';
 import { useQuiz, QuizProvider } from './QuizContext';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import CustomZoomableGroup, {MapProvider} from '../CustomZoomableGroup';
 
 interface UnitProps {
   geography: any;
@@ -94,10 +93,6 @@ const Map: React.FC = () => {
   const mapScale = isMobileView ? 6000 : 3800;
   return (
     <Card className="overflow-hidden">
-      <MapProvider 
-        width={mapWidth}
-        height={mapHeight}
-        projectionConfig={{scale: mapScale}}>
 
         <ComposableMap
           projectionConfig={{
@@ -107,8 +102,7 @@ const Map: React.FC = () => {
           height={mapHeight}
           width={mapWidth}
         >
-          
-          <CustomZoomableGroup
+          <ZoomableGroup
           translateExtent={[
             [-mapWidth*2/4, -mapHeight*2/4],
             [(mapWidth*2)*3/4, (mapHeight*2)*3/4]
@@ -124,10 +118,8 @@ const Map: React.FC = () => {
                 ))
               }
             </Geographies>
-          </CustomZoomableGroup>
-         
+          </ZoomableGroup>
         </ComposableMap>
-        </MapProvider>
     </Card>
   );
 };
