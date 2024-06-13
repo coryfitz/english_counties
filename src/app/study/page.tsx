@@ -20,7 +20,7 @@ const TextBox: React.FC = () => {
       </div>
 
       <div className="flex-1 flex items-center px-2 py-2 bg-white border border-gray-300 rounded-xl md:w-56 md:my-2">
-        {selectedUnit}
+        {selectedUnit || <span className="invisible">no unit selected</span>}
       </div>
 
     </div>
