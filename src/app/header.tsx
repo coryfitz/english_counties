@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <div className="bg-gray-100 py-4 px-6 flex justify-between items-center">
       
-      <a href="/" className="font-medium md:text-lg text-base">
+      <a href="/" className="font-medium text-lg text-base">
         Counties of England
       </a>
 
