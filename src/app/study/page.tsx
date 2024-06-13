@@ -14,7 +14,7 @@ const TextBox: React.FC = () => {
   const { selectedUnit, message } = useStudy(); // Use context
   const unitTypeUpper = unitType[0].toUpperCase() + unitType.slice(1);
   return (
-    <div className="flex md:flex-col justify-between md:items-start font-medium text-xs md:text-base w-full">
+    <div className="flex md:flex-col justify-between md:items-start font-medium text-sm md:text-base w-full">
 
       <div className="flex items-center px-2 py-2 bg-white border border-gray-300 rounded-xl md:w-56">
         {message}
