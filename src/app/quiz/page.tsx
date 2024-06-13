@@ -19,11 +19,11 @@ const TextBox: React.FC = () => {
   }
   return (
     <div className="flex md:flex-col justify-between md:items-start text-xs md:text-base w-full">
-      <div className="flex items-center px-2 py-2 bg-white border border-gray-300 rounded-xl md:w-52">
+      <div className="flex items-center px-2 py-2 bg-white border border-gray-300 rounded-xl md:w-56">
         {message}
       </div>
       {quizIndex < quiz.length && (
-        <div className="flex-1 flex items-center px-2 py-2 bg-white border border-gray-300 rounded-xl md:w-52 md:my-2">
+        <div className="flex-1 flex items-center px-2 py-2 bg-white border border-gray-300 rounded-xl md:w-56 md:my-2">
           <span className="w-full md:text-left text-center">{nameToGuess}</span>
         </div>
       )}
@@ -132,7 +132,7 @@ const Quiz: React.FC = () => {
         <div className="md:w-1/4 md:mr-2 mb-2 md:mb-0 mx-4 md:mx-6">
           <TextBox />
         </div>
-        <div className="flex-1 mx-4 md:ml-2 md:mx-6 ">
+        <div className="flex-1 mx-4 md:ml-6 md:mx-6 ">
           <Map />
         </div>
       </div>
