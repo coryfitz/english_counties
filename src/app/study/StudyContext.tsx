@@ -10,7 +10,7 @@ interface StudyContextType {
 
 const defaultValue: StudyContextType = {
     selectedUnit: null,
-    message: `Select any ${unitType}`,
+    message: `${unitType}:`,
     handleUnitClick: () => {},
     handleMouseLeave: () => {},
 };
@@ -25,7 +25,8 @@ interface StudyProviderProps {
 
 export const StudyProvider: React.FC<StudyProviderProps> = ({ children }) => {
     const [selectedUnit, setSelectedUnit] = useState<string | null>(null);
-    const message = `Select any ${unitType}`;
+    const formattedUnitType = unitType.charAt(0).toUpperCase() + unitType.slice(1);
+    const message = `${formattedUnitType}:`;
 
     const handleUnitClick = (unitGeo: any) => {
         const unitName = unitGeo?.properties?.[unitType];
