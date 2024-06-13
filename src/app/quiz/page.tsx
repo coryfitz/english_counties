@@ -23,7 +23,7 @@ const TextBox: React.FC = () => {
         {message}
       </div>
       {quizIndex < quiz.length && (
-        <div className="flex-1 flex items-center px-2 py-2 bg-white border border-gray-300 rounded-xl md:w-52">
+        <div className="flex-1 flex items-center px-2 py-2 bg-white border border-gray-300 rounded-xl md:w-52 md:my-2">
           <span className="w-full md:text-left text-center">{nameToGuess}</span>
         </div>
       )}
