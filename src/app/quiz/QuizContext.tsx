@@ -24,7 +24,7 @@ const defaultContextValue: QuizContextType = {
   quizIndex: 0,
   quizEnded: false,
   done: [],
-  message: 'Please select:',
+  message: 'Select:',
   handleUnitClick: () => {},
   restartQuiz: () => {},
 };
@@ -47,7 +47,7 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [quizIndex, setQuizIndex] = useState<number>(0);
   const [quizEnded, setQuizEnded] = useState<boolean>(false);
   const [done, setDone] = useState<string[]>([]);
-  const [message, setMessage] = useState<string>('Please select:');
+  const [message, setMessage] = useState<string>('Select:');
 
   useEffect(() => {
     // Initializes quiz data on the client side.
@@ -85,7 +85,7 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
     //setQuizIndex(1000);
     setQuizEnded(false);
     setDone([]);
-    setMessage('Please select:');
+    setMessage('Select:');
     //setMessage('Congratulations on completing the quiz');
   };
 
