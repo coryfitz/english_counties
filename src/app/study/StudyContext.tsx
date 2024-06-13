@@ -10,7 +10,7 @@ interface StudyContextType {
 
 const defaultValue: StudyContextType = {
     selectedUnit: null,
-    message: `Please select any ${unitType} to reveal its name`,
+    message: `Select any ${unitType}`,
     handleUnitClick: () => {},
     handleMouseLeave: () => {},
 };
@@ -25,7 +25,7 @@ interface StudyProviderProps {
 
 export const StudyProvider: React.FC<StudyProviderProps> = ({ children }) => {
     const [selectedUnit, setSelectedUnit] = useState<string | null>(null);
-    const message = `Please select any ${unitType} to reveal its name`;
+    const message = `Select any ${unitType}`;
 
     const handleUnitClick = (unitGeo: any) => {
         const unitName = unitGeo?.properties?.[unitType];
