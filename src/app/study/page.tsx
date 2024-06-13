@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
 import { center_left, center_right, unitType, geoUrl } from '@/app/Config';
 import { useStudy, StudyProvider } from './StudyContext';
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
 interface UnitProps {
@@ -15,7 +14,7 @@ const TextBox: React.FC = () => {
   const { selectedUnit, message } = useStudy(); // Use context
   const unitTypeUpper = unitType[0].toUpperCase() + unitType.slice(1);
   return (
-    <div className="flex md:flex-col justify-between md:items-start text-xs md:text-base w-full">
+    <div className="flex md:flex-col justify-between md:items-start font-medium text-xs md:text-base w-full">
 
       <div className="flex items-center px-2 py-2 bg-white border border-gray-300 rounded-xl md:w-56">
         {message}
